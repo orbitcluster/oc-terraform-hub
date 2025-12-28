@@ -1,5 +1,5 @@
-module "eks_setup" {
-  source = "git::https://github.com/orbitcluster/oc-terraform-module-eks-setup.git?ref=23c8dee58d740c9ab0180893918416d78c7e52ab"
+  module "eks_setup" {
+  source = "git::https://github.com/orbitcluster/oc-terraform-module-eks-setup.git?ref=535dcee38fea6d89b5a79692c72b19334b7ca852"
 
   # Basic VPC Info
   vpc_cidr             = var.vpc_cidr
@@ -12,4 +12,10 @@ module "eks_setup" {
   env    = var.env
   bu_id  = var.bu_id
   app_id = var.app_id
+
+  # EKS Configuration
+  min_size                   = var.min_size
+  max_size                   = var.max_size
+  desired_size               = var.desired_size
+  max_pods_per_node          = var.max_pods_per_node
 }
