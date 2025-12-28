@@ -1,4 +1,4 @@
-  module "eks_hub" {
+  module "eks_setup" {
   source = "git::https://github.com/orbitcluster/oc-terraform-module-eks-setup.git?ref=535dcee38fea6d89b5a79692c72b19334b7ca852"
 
   # Basic VPC Info
