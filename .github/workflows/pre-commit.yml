@@ -2,7 +2,9 @@
 name: pre-commit
 on:
   push:
-
+    branches-ignore:
+      - main
+  pull_request:
 permissions:
   contents: read
 
