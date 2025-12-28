@@ -3,7 +3,7 @@ name: "hub-ci"
 
 on:
   push:
-  # pull_request:
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -49,11 +49,9 @@ jobs:
             -backend-config="bucket=${{ steps.backend_bucket.outputs.bucket_name }}" \
             -backend-config="key=${{ env.TFVARS_FILE }}/terraform.tfstate"
 
-      - name: Terraform Validate
-        run: terraform validate
-
       - name: Terraform Plan
         run: terraform plan -var-file="${{ env.TFVARS_FILE }}.tfvars"
 
-      # - name: Terraform Test
-      #   run: terraform test
+      - name: Terraform Apply
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: terraform apply -var-file="${{ env.TFVARS_FILE }}.tfvars"  
