@@ -1,22 +1,14 @@
-# Outputs temporarily disabled - eks-setup module doesn't expose outputs yet
-# Uncomment when outputs are added to oc-terraform-module-eks-setup
+output "cluster_name" {
+  description = "The name of the EKS cluster"
+  value       = module.eks_setup.cluster_name
+}
 
-# output "vpc_id" {
-#   description = "VPC ID from eks-setup"
-#   value       = module.eks_setup.vpc_id
-# }
+output "cluster_endpoint" {
+  description = "The endpoint for your EKS Kubernetes API."
+  value       = module.eks_setup.cluster_endpoint
+}
 
-# output "vpc_cidr" {
-#   description = "VPC CIDR from eks-setup"
-#   value       = module.eks_setup.vpc_cidr
-# }
-
-# output "private_subnet_ids" {
-#   description = "Private subnet IDs from eks-setup"
-#   value       = module.eks_setup.private_subnet_ids
-# }
-
-# output "public_subnet_ids" {
-#   description = "Public subnet IDs from eks-setup"
-#   value       = module.eks_setup.public_subnet_ids
-# }
+output "cluster_certificate_authority_data" {
+  description = "The base64 encoded certificate data required to communicate with your cluster."
+  value       = module.eks_setup.cluster_certificate_authority_data
+}

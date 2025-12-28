@@ -10,3 +10,8 @@ vpc_endpoints = {
   "s3" = true
   "ssm" = true
 }
+
+min_size                   = 1
+max_size                   = 2
+desired_size               = 1
+max_pods_per_node          = 10
