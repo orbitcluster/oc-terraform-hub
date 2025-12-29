@@ -81,3 +81,9 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "is_eks_managed_node_group" {
+  description = "Boolean to enable or disable the EKS node group"
+  type        = bool
+  default     = false
+}

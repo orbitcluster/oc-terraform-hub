@@ -1,5 +1,5 @@
 ---
-name: "hub-ci"
+name: "hub-destroy"
 
 on:
   workflow_dispatch:
@@ -11,9 +11,9 @@ env:
   TFVARS_FILE: hub
 
 jobs:
-  terraform:
-    name: "terraform-check"
-    environment: Terraform_Destroy_Auth
+  terraform_destroy:
+    name: "terraform-destroy"
+    environment: Terraform_Auth
     runs-on: ubuntu-latest
     permissions:
       contents: read
