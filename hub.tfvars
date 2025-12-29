@@ -4,7 +4,7 @@ app_id       = "APP67890"
 
 # Network
 vpc_cidr = "10.0.0.0/16"
-azs      = ["us-east-1a", "us-east-1b"]
+azs      = ["us-east-1a", "us-east-1c"]
 
 vpc_endpoints = {
   "s3" = true
