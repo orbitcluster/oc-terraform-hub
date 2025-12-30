@@ -17,20 +17,3 @@ desired_size      = 1
 max_pods_per_node = 10
 
 is_eks_managed_node_group = true
-
-cluster_access_entries = {
-  # IAM Role: OrbitClusterEKSAdmin
-  "OrbitClusterEKSAdmin" = {
-    principal_arn = "arn:aws:iam::485646919618:role/OrbitClusterEKSAdmin"
-    type          = "STANDARD"
-
-    policy_associations = {
-      "ClusterAdmin" = {
-        policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
-        access_scope = {
-          type = "cluster"
-        }
-      }
-    }
-  }
-}
