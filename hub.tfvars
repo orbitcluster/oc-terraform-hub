@@ -7,8 +7,16 @@ vpc_cidr = "10.0.0.0/16"
 azs      = ["us-east-1a", "us-east-1c"]
 
 vpc_endpoints = {
-  "s3"  = true
-  "ssm" = true
+  s3          = true
+  ssm         = true
+  ssmmessages = true
+  ec2messages = true
+  eks         = true
+  ecr_api     = true
+  ecr_dkr     = true
+  sts         = true
+  ec2         = true
+  logs        = true
 }
 
 min_size          = 1
