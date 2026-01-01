@@ -1,5 +1,5 @@
 module "eks_setup" {
-  source = "git::https://github.com/orbitcluster/oc-terraform-module-eks-setup.git?ref=7ae662253c438c7845dfbefaa8bfd4b90005b3ef"
+  source = "git::https://github.com/orbitcluster/oc-terraform-module-eks-setup.git?ref=5fd51634ff556f99faf1e1dbb07e6c464dca8bca"
 
   # Basic VPC Info
   vpc_cidr = var.vpc_cidr
