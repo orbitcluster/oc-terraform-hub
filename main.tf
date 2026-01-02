@@ -1,5 +1,5 @@
 module "eks_setup" {
-  source = "git::https://github.com/orbitcluster/oc-terraform-module-eks-setup.git?ref=10f9db3f8c4ef9eb6c48ec36705876b21cd33aec"
+  source = "git::https://github.com/orbitcluster/oc-terraform-module-eks-setup.git?ref=843cbaed05307af1afdc1c7154d3f56bd49455b6"
 
   # Basic VPC Info
   vpc_cidr = var.vpc_cidr
@@ -19,4 +19,8 @@ module "eks_setup" {
   desired_size              = var.desired_size
   max_pods_per_node         = var.max_pods_per_node
   is_eks_managed_node_group = var.is_eks_managed_node_group
+
+  # Endpoint Access Configuration
+  cluster_endpoint_access_type         = var.cluster_endpoint_access_type
+  cluster_endpoint_public_access_cidrs = var.cluster_endpoint_public_access_cidrs
 }
