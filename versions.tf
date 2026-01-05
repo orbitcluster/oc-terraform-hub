@@ -30,7 +30,7 @@ provider "kubernetes" {
 
 # Helm provider configuration for EKS
 provider "helm" {
-  kubernetes {
+  kubernetes =  {
     host                   = module.eks_setup.cluster_endpoint
     cluster_ca_certificate = base64decode(module.eks_setup.cluster_certificate_authority_data)
 
