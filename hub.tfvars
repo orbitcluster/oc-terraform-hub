@@ -1,3 +1,4 @@
+region = "us-east-1"
 env    = "dev"
 bu_id  = "BU12345"
 app_id = "APP67890"
