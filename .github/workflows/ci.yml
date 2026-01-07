@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   hub-ci:
-    uses: "orbitcluster/oc-terraform-module-eks-setup/.github/workflows/main.yml@dk/changestrategy"
+    uses: "orbitcluster/oc-terraform-module-eks-setup/.github/workflows/main.yml@main"
     with:
       tfvar_file_path: "hub.tfvars"
       bucket_name: "oc-backend-hub"

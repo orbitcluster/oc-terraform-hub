@@ -37,7 +37,7 @@ jobs:
 
   hub-destroy:
     needs: validate-input
-    uses: "orbitcluster/oc-terraform-module-eks-setup/.github/workflows/destroy.yml@dk/changestrategy"
+    uses: "orbitcluster/oc-terraform-module-eks-setup/.github/workflows/destroy.yml@main"
     with:
       tfvar_file_path: "hub.tfvars"
       bucket_name: "oc-backend-hub"
