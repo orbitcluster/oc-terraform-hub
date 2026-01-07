@@ -3,50 +3,46 @@ name: "hub-destroy"
 
 on:
   workflow_dispatch:
+    inputs:
+      component:
+        description: "Component to destroy"
+        required: true
+        type: choice
+        options:
+          - eks_infra
+          - eks_essential_addons
+          - all
+      confirm_destroy:
+        description: "Type 'destroy' to confirm"
+        required: true
+        type: string
 
 permissions:
   contents: read
-
-env:
-  TFVARS_FILE: hub
+  id-token: write
+  issues: write
 
 jobs:
-  terraform_destroy:
-    name: "terraform-destroy"
-    environment: Terraform_Auth
+  validate-input:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: "1.14.2"
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-region: us-east-1
-          role-to-assume: ${{ secrets.OC_ROLE_TO_ASSUME }}
-          role-session-name: githubactions-${{ github.run_id }}
-
-      - name: Create/Verify Terraform Backend S3 Bucket
-        id: backend_bucket
+      - name: Validate confirmation
+        if: ${{ github.event.inputs.confirm_destroy != 'destroy' }}
         run: |
-          chmod +x ./scripts/create-tf-backend-bucket.sh
-          BUCKET_NAME=$(./scripts/create-tf-backend-bucket.sh ${{ secrets.TF_BACKEND_BUCKET }} us-east-1 | tail -1)
-          echo "bucket_name=$BUCKET_NAME" >> $GITHUB_OUTPUT
-
-      - name: Terraform Init
+          echo "::error::You must type 'destroy' to confirm the destruction"
+          exit 1
+      - name: Display destroy target
         run: |
-          terraform init \
-            -backend-config="bucket=${{ steps.backend_bucket.outputs.bucket_name }}" \
-            -backend-config="key=${{ env.TFVARS_FILE }}/terraform.tfstate"
+          echo "🎯 Component to destroy: ${{ github.event.inputs.component }}"
 
-      - name: Terraform Destroy
-        run: terraform destroy -auto-approve -var-file="${{ env.TFVARS_FILE }}.tfvars"
+  hub-destroy:
+    needs: validate-input
+    uses: "orbitcluster/oc-terraform-module-eks-setup/.github/workflows/destroy.yml@v1.7.0"
+    with:
+      tfvar_file_path: "hub.tfvars"
+      bucket_name: "oc-backend-hub"
+      approvers: "dilipsamanta, mav-sk"
+      cluster_name: "oc-eks-hub"
+      component: ${{ github.event.inputs.component }}
+      module_ref: "v1.7.0"
+    secrets: inherit
