@@ -19,6 +19,6 @@ jobs:
       bucket_name: "oc-backend-hub"
       approvers: "dilipsamanta, mav-sk"
       master_s3_directory: "oc-eks-hub"
-      module_ref: "v2.1.0"
+      module_ref: "v2.1.1"
     secrets: inherit
 #
