@@ -28,5 +28,5 @@ max_pods_per_node = 10
 is_eks_managed_node_group = false
 
 # EKS API Server Endpoint Access
-cluster_endpoint_access_type         = "private_with_public_cidrs"
+cluster_endpoint_access_type         = "public"
 cluster_endpoint_public_access_cidrs = ["101.0.63.102/32"]
