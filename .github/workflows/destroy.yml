@@ -1,0 +1,47 @@
+---
+name: "hub-destroy"
+
+on:
+  workflow_dispatch:
+    inputs:
+      component:
+        description: "Component to destroy"
+        required: true
+        type: choice
+        options:
+          - eks_infra
+          - eks_essential_addons
+          - all
+      confirm_destroy:
+        description: "Type 'destroy' to confirm"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  id-token: write
+  issues: write
+
+jobs:
+  validate-input:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate confirmation
+        if: ${{ github.event.inputs.confirm_destroy != 'destroy' }}
+        run: |
+          echo "::error::You must type 'destroy' to confirm the destruction"
+          exit 1
+      - name: Display destroy target
+        run: |
+          echo "🎯 Component to destroy: ${{ github.event.inputs.component }}"
+
+  hub-destroy:
+    needs: validate-input
+    uses: "orbitcluster/oc-terraform-module-eks-setup/.github/workflows/destroy.yml@dk/changestrategy"
+    with:
+      tfvar_file_path: "hub.tfvars"
+      bucket_name: "oc-backend-hub"
+      approvers: "dilipsamanta, mav-sk"
+      cluster_name: "oc-eks-hub"
+      component: ${{ github.event.inputs.component }}
+    secrets: inherit
