@@ -30,3 +30,4 @@ is_eks_managed_node_group = false
 # EKS API Server Endpoint Access
 cluster_endpoint_access_type         = "public"
 cluster_endpoint_public_access_cidrs = ["101.0.63.102/32"]
+is_hub                               = true
