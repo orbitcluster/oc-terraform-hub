@@ -11,12 +11,12 @@ permissions:
 
 jobs:
   hub-ci:
-    uses: "orbitcluster/oc-terraform-module-eks-setup/.github/workflows/main.yml@v2.7.0"
+    uses: "orbitcluster/oc-terraform-module-eks-setup/.github/workflows/main.yml@v2.8.0"
     with:
       tfvar_file_path: "hub.tfvars"
       bucket_name: "oc-backend-hub"
       approvers: "dilipsamanta, mav-sk"
       master_s3_directory: "oc-eks-hub"
-      module_ref: "v2.7.0"
+      module_ref: "v2.8.0"
     secrets: inherit
 #
