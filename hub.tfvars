@@ -20,9 +20,9 @@ vpc_endpoints = {
   logs        = true
 }
 
-min_size          = 1
-max_size          = 2
-desired_size      = 1
+min_size          = 0
+max_size          = 0
+desired_size      = 0
 max_pods_per_node = 50
 
 is_eks_managed_node_group = false
