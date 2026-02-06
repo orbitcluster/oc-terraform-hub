@@ -26,6 +26,7 @@ desired_size      = 1
 max_pods_per_node = 50
 
 is_eks_managed_node_group = false
+domain_url                = "oc.orbitcluster.com"
 
 # EKS API Server Endpoint Access
 cluster_endpoint_access_type         = "public"
