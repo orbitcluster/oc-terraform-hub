@@ -1,7 +1,8 @@
-region = "us-east-1"
-env    = "dev"
-bu_id  = "BU12345"
-app_id = "APP67890"
+region        = "us-east-1"
+env           = "dev"
+bu_id         = "BU12345"
+app_id        = "APP67890"
+friendly_name = "allhub"
 
 # Network
 vpc_cidr = "10.0.0.0/16"
