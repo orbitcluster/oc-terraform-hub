@@ -38,12 +38,12 @@ jobs:
 
   hub-destroy:
     needs: validate-input
-    uses: "orbitcluster/oc-terraform-module-eks-setup/.github/workflows/destroy.yml@v2.16.2"
+    uses: "orbitcluster/oc-terraform-module-eks-setup/.github/workflows/destroy.yml@v2.16.3"
     with:
       tfvar_file_path: "hub.tfvars"
       bucket_name: "oc-backend-hub"
       approvers: "dilipsamanta, mav-sk"
       master_s3_directory: "oc-eks-hub"
       component: ${{ github.event.inputs.component }}
-      module_ref: "v2.16.2"
+      module_ref: "v2.16.3"
     secrets: inherit
